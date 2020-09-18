@@ -1,1 +1,1 @@
-wheres_wally
+A game of Where's Wally.
