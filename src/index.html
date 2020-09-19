@@ -8,7 +8,20 @@
       <h1>Where's Wally</h1>
       <h2>Time: <span id="timer">0</span>s</h2>
     </div>
-    <div class="image-container">
+    <div id="image-container">
+      <div id="selection">
+        <div id="square">
+
+        </div>
+        <select id="selection-list">
+          <option>Wally</option>
+          <option>Wizard</option>
+          <option>Wenda</option>
+          <option>Odlaw</option>
+          <option>Woof</option>
+        </select>
+        <button id="selection-button">Select</button>
+      </div>
       <img id="troy-image" src="<%=require('./images/troy.jpg').default%>">
     </div>
   </body>

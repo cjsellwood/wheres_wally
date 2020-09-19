@@ -1,9 +1,12 @@
 import "./index.css";
 
-console.log("wally");
-
+// Click on image to select location
 const troyImage = document.getElementById("troy-image");
+const selection = document.getElementById("selection");
 const clickImage = (event) => {
+  selection.style.left = event.offsetX - 34 + "px";
+  selection.style.top = event.offsetY - 34 + "px";
+
   console.log("offset", event.offsetX, event.offsetY);
 };
 
