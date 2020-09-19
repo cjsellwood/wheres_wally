@@ -38,8 +38,8 @@ body {
   height: 70px;
   position: absolute;
   z-index: 500;
-  top: -100;
-  left: -100;
+  top: -100px;
+  left: -100px;
 }
 
 #square {
@@ -56,7 +56,8 @@ body {
   cursor: pointer;
   color: white;
   text-align: center;
-  text-align-last: center
+  text-align-last: center;
+  -moz-text-align-last: center;
 }
 
 #selection-button {
