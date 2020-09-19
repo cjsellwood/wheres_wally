@@ -1,3 +1,38 @@
+* {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
-  background-color: rgb(214, 255, 241);
+  background-color: rgb(255, 255, 255);
+}
+
+.top-bar {
+  height: 10vh;
+  position: fixed;
+  background-color: rgb(203, 77, 77);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2vh;
+  z-index: 1000;
+}
+
+.top-bar > * {
+  margin: 10px;
+}
+
+.image-container {
+  margin-top: 10vh;
+  position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+  .top-bar {
+    width: 400vw;
+  }
 }
