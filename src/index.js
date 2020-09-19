@@ -7,9 +7,14 @@ const troyImage = document.getElementById("troy-image");
 const selection = document.getElementById("selection");
 
 // Moves selection box to clicked location
+let clickLocation = null;
 const clickImage = (event) => {
   selection.style.left = event.offsetX - 34 + "px";
   selection.style.top = event.offsetY - 34 + "px";
+  clickLocation = {
+    x: event.offsetX,
+    y: event.offsetY,
+  };
 };
 
 troyImage.addEventListener("click", clickImage);
@@ -60,29 +65,20 @@ const firebaseConfig = {
   appId: "1:1015856911961:web:4676fdd0c2c61768ca8348",
 };
 
+// Access firestore database
 firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-let db = firebase.firestore();
-console.log(db);
-db.collection("characters").add({
-  Wally: {
-    x: 555,
-    y: 1839,
-  },
-  Wizard: {
-    x: 1005,
-    y: 120,
-  },
-  Wenda: {
-    x: 2728,
-    y: 1632,
-  },
-  Odlaw: {
-    x: 3133,
-    y: 1775,
-  },
-  Woof: {
-    x: 2185,
-    y: 1496,
-  },
+const checkButton = document.getElementById("check-button");
+const selectionList = document.getElementById("selection-list");
+
+// When clicking check button check click against location on server
+checkButton.addEventListener("click", () => {
+  const selectedCharacter = selectionList.value;
+  const docRef = db.collection("characters").doc(selectedCharacter);
+  docRef.get().then((response) => {
+    const characterLocation = response.data()
+    console.log(clickLocation, characterLocation);
+  });
+  
 });

@@ -60,7 +60,7 @@ body {
   -moz-text-align-last: center;
 }
 
-#selection-button {
+#check-button {
   width: 78px;
   height: 35px;
   border: none;
@@ -71,7 +71,7 @@ body {
   cursor: pointer;
 }
 
-#selection-button:hover {
+#check-button:hover {
   background-color: rgb(156, 13, 13);
 }
 
