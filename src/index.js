@@ -9,8 +9,8 @@ const selection = document.getElementById("selection");
 // Moves selection box to clicked location
 let clickLocation = null;
 const clickImage = (event) => {
-  selection.style.left = event.offsetX - 34 + "px";
-  selection.style.top = event.offsetY - 34 + "px";
+  selection.style.left = event.offsetX - 38 + "px";
+  selection.style.top = event.offsetY - 38 + "px";
   clickLocation = {
     x: event.offsetX,
     y: event.offsetY,
@@ -71,14 +71,52 @@ const db = firebase.firestore();
 
 const checkButton = document.getElementById("check-button");
 const selectionList = document.getElementById("selection-list");
+const loading = document.getElementById("loader");
 
 // When clicking check button check click against location on server
 checkButton.addEventListener("click", () => {
   const selectedCharacter = selectionList.value;
   const docRef = db.collection("characters").doc(selectedCharacter);
-  docRef.get().then((response) => {
-    const characterLocation = response.data()
-    console.log(clickLocation, characterLocation);
-  });
+
+  // Reset selection box
+  selection.style.left = "-200px";
+  selection.style.top = "-200px;";
+
+  // Display loading spinner
+  loading.style.left = clickLocation.x - 4 + "px";
+  loading.style.top = clickLocation.y - 105 + "px";
   
+  // Check if click in range of square
+  docRef.get().then((response) => {
+    const characterLocation = response.data();
+    console.log(clickLocation, characterLocation);
+    // Check if character selected is inside the selection box
+    if (
+      clickLocation.x > characterLocation.x - 20 &&
+      clickLocation.x < characterLocation.x + 20 &&
+      clickLocation.y > characterLocation.y - 20 &&
+      clickLocation.y < characterLocation.y + 20
+    ) {
+      console.log("Found " + selectedCharacter);
+      // Reset selection box and loading spinner
+      selection.style.left = "-200px";
+      selection.style.top = "-200px;";
+      loading.style.left = "-200px";
+      loading.style.top = "-200px";
+
+      // Mark as found
+      const located = document.getElementById(selectedCharacter);
+      located.style.left = clickLocation.x - 43 + "px";
+      located.style.top = clickLocation.y - 43 + "px";
+      const find = document.getElementById(`find-${selectedCharacter}`);
+      find.style.textDecoration = "line-through"
+
+    } else {
+      // Reset selection box and loading spinner
+      selection.style.left = "-200px";
+      selection.style.top = "-200px;";
+      loading.style.left = "-200px";
+      loading.style.top = "-200px";
+    }
+  });
 });

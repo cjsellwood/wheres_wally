@@ -5,6 +5,29 @@
   </head>
   <body>
     <div class="top-bar">
+      <div class="find-box">
+        <div>
+          <img src="<%=require('./images/Wally.jpg').default%>">
+          <p id="find-Wally">Wally</p>
+        </div>
+        <div>
+          <img src="<%=require('./images/Wizard.jpg').default%>">
+          <p id="find-Wizard">Wizard</p>
+        </div>
+        <div>
+          <img src="<%=require('./images/Wenda.jpg').default%>">
+          <p id="find-Wenda">Wenda</p>
+        </div>
+        <div>
+          <img src="<%=require('./images/Odlaw.jpg').default%>">
+          <p id="find-Odlaw">Odlaw</p>
+        </div>
+        <div>
+          <img src="<%=require('./images/Woof.jpg').default%>">
+          <p id="find-Woof">Woof</p>
+        </div>
+      </div>
+
       <h1>Where's Wally</h1>
       <h2>Time: <span id="timer">0</span>s</h2>
     </div>
@@ -22,6 +45,12 @@
         </select>
         <button id="check-button">Check</button>
       </div>
+      <div id="loader"></div>
+      <div id="Wally" class="located">Wally</div>
+      <div id="Wizard" class="located">Wizard</div>
+      <div id="Wenda" class="located">Wenda</div>
+      <div id="Odlaw" class="located">Odlaw</div>
+      <div id="Woof" class="located">Woof</div>
       <img id="troy-image" src="<%=require('./images/troy.jpg').default%>">
     </div>
   </body>
