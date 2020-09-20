@@ -26,12 +26,12 @@ const Timer = () => {
   timerElement.textContent = ((new Date() - startDate) * 0.001).toFixed(0);
 };
 
-// Start timer
+// Start timer function
 const startTimer = () => {
   myTimer = setInterval(Timer, 1000);
 };
 
-// Stop timer
+// Stop timer function
 const stopTimer = () => {
   clearInterval(myTimer);
 };
@@ -43,16 +43,6 @@ window.addEventListener("load", () => {
   startDate = new Date();
   startTimer();
 });
-
-// Test of stopping timer
-timerElement.addEventListener("click", stopTimer);
-
-// Offset locations
-// Wizard 1005, 120
-// Wally 553 1839
-// Odlaw 3133 1775
-// Wenda 2728 1632
-// Woof 2185 1496
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -119,7 +109,6 @@ checkButton.addEventListener("click", () => {
         const finishTime = timerElement.textContent;
         document.getElementById("finish-time").textContent = finishTime;
         document.getElementById("finish-modal").style.display = "flex";
-        console.log(finishTime);
       }
     } else {
       // Reset selection box and loading spinner
@@ -145,7 +134,9 @@ submitName.addEventListener("click", () => {
     time: document.getElementById("finish-time").textContent,
   };
 
-  console.log(winner);
+  // Hide submission modal and show leaderboard modal
+  document.getElementById("modal-content").style.display = "none";
+  document.getElementById("leaderboard").style.display = "block";
 
   // Retrieve leaderboard and create a list
   let leaderboard = [];
@@ -153,15 +144,39 @@ submitName.addEventListener("click", () => {
 
   leaderboardRef.get().then((response) => {
     response.forEach((doc) => {
-      console.log(doc.data());
       leaderboard.push(doc.data());
     });
-    
-    // Add winner to leaderboard database and current list
-    leaderboardRef.doc(`${leaderboard.length}`).set(winner)
-    leaderboard.push(winner);
-    console.log(leaderboard);
-  });
 
-  // Display leaderboard in modal
+    // Add winner to leaderboard database and current list
+    leaderboardRef.doc(`${leaderboard.length}`).set(winner);
+    leaderboard.push(winner);
+
+    // Sort leaderboard by lowest time
+    leaderboard.sort(function (a, b) {
+      return Number(a.time) - Number(b.time);
+    });
+
+    // Display leaderboard in modal
+    const list = document.getElementById("leaderboard-list");
+
+    // Create DOM components for each entry in leaderboard
+    leaderboard.forEach((el) => {
+      const listItem = document.createElement("li");
+      const listDetails = document.createElement("div");
+      listDetails.classList.add("list-details");
+
+      const listName = document.createElement("p");
+      listName.classList.add("list-name");
+      listName.textContent = el.name;
+
+      const listTime = document.createElement("p");
+      listTime.classList.add("list-time");
+      listTime.textContent = el.time;
+
+      listDetails.appendChild(listName);
+      listDetails.appendChild(listTime);
+      listItem.appendChild(listDetails)
+      list.appendChild(listItem);
+    });
+  });
 });

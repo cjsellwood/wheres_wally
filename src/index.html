@@ -7,23 +7,23 @@
     <div class="top-bar">
       <div class="find-box">
         <div>
-          <img src="<%=require('./images/Wally.jpg').default%>">
+          <img src="<%=require('./images/Wally.jpg').default%>" />
           <p id="find-Wally">Wally</p>
         </div>
         <div>
-          <img src="<%=require('./images/Wizard.jpg').default%>">
+          <img src="<%=require('./images/Wizard.jpg').default%>" />
           <p id="find-Wizard">Wizard</p>
         </div>
         <div>
-          <img src="<%=require('./images/Wenda.jpg').default%>">
+          <img src="<%=require('./images/Wenda.jpg').default%>" />
           <p id="find-Wenda">Wenda</p>
         </div>
         <div>
-          <img src="<%=require('./images/Odlaw.jpg').default%>">
+          <img src="<%=require('./images/Odlaw.jpg').default%>" />
           <p id="find-Odlaw">Odlaw</p>
         </div>
         <div>
-          <img src="<%=require('./images/Woof.jpg').default%>">
+          <img src="<%=require('./images/Woof.jpg').default%>" />
           <p id="find-Woof">Woof</p>
         </div>
       </div>
@@ -33,9 +33,7 @@
     </div>
     <div id="image-container">
       <div id="selection">
-        <div id="square">
-
-        </div>
+        <div id="square"></div>
         <select id="selection-list">
           <option>Wally</option>
           <option>Wizard</option>
@@ -51,16 +49,26 @@
       <div id="Wenda" class="located">Wenda</div>
       <div id="Odlaw" class="located">Odlaw</div>
       <div id="Woof" class="located">Woof</div>
-      <img id="troy-image" src="<%=require('./images/troy.jpg').default%>">
+      <img id="troy-image" src="<%=require('./images/troy.jpg').default%>" />
       <div id="finish-modal">
         <div id="modal-content">
           <h3>You found them all!</h3>
           <p>Time: <span id="finish-time">0</span>s</p>
           <label for="name">Enter Your Name</label>
-          <input type="text" name="name" id="name" placeholder="Name" maxlength="20" minlength="1">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Name"
+            maxlength="20"
+            minlength="1"
+          />
           <button type="button" id="submit-name">Submit</button>
         </div>
-        <div id="leaderboard">Leaderboard</div>
+        <div id="leaderboard">
+          <h3>Leaderboard</h3>
+          <ol id="leaderboard-list"></ol>
+        </div>
       </div>
     </div>
   </body>
