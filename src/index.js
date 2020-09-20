@@ -72,6 +72,7 @@ const db = firebase.firestore();
 const checkButton = document.getElementById("check-button");
 const selectionList = document.getElementById("selection-list");
 const loading = document.getElementById("loader");
+let found = 0;
 
 // When clicking check button check click against location on server
 checkButton.addEventListener("click", () => {
@@ -106,10 +107,20 @@ checkButton.addEventListener("click", () => {
 
       // Mark as found
       const located = document.getElementById(selectedCharacter);
-      located.style.left = clickLocation.x - 43 + "px";
-      located.style.top = clickLocation.y - 43 + "px";
+      located.style.left = characterLocation.x - 53 + "px";
+      located.style.top = characterLocation.y - 53 + "px";
       const find = document.getElementById(`find-${selectedCharacter}`);
-      find.style.textDecoration = "line-through"
+      find.style.textDecoration = "line-through";
+
+      // Stop game if all 5 characters found and record time
+      found += 1;
+      if (found === 5) {
+        stopTimer();
+        const finishTime = timerElement.textContent;
+        document.getElementById("finish-time").textContent = finishTime;
+        document.getElementById("finish-modal").style.display = "flex";
+        console.log(finishTime);
+      }
 
     } else {
       // Reset selection box and loading spinner

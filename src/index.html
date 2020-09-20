@@ -52,6 +52,16 @@
       <div id="Odlaw" class="located">Odlaw</div>
       <div id="Woof" class="located">Woof</div>
       <img id="troy-image" src="<%=require('./images/troy.jpg').default%>">
+      <div id="finish-modal">
+        <div id="modal-content">
+          <h3>You found them all!</h3>
+          <p>Time: <span id="finish-time">0</span>s</p>
+          <label for="name">Enter Your Name</label>
+          <input type="text" name="name" id="name" placeholder="Name" maxlength="20">
+          <button type="button" id="submit-name">Submit</button>
+        </div>
+        <div id="leaderboard">Leaderboard</div>
+      </div>
     </div>
   </body>
 </html>

@@ -25,6 +25,8 @@ body {
 
 .top-bar > * {
   margin: 10px;
+  width: 30%;
+  text-align: center;
 }
 
 .find-box {
@@ -52,8 +54,8 @@ body {
 }
 
 #selection {
-  width: 70px;
-  height: 70px;
+  width: 78px;
+  /* height: 70px; */
   position: absolute;
   z-index: 500;
   top: -100px;
@@ -83,14 +85,14 @@ body {
   height: 35px;
   border: none;
   outline: none;
-  background-color: rgb(203, 77, 77);
+  background-color: rgb(32, 156, 1);
   color: rgb(255, 255, 255);
   border: 4px solid rgb(203, 77, 77);
   cursor: pointer;
 }
 
 #check-button:hover {
-  background-color: rgb(156, 13, 13);
+  background-color: rgb(40, 194, 2);
 }
 
 .located {
@@ -98,20 +100,19 @@ body {
   left: -200px;
   top: -200px;
   border-radius: 100%;
-  border: 4px solid red;
-  width: 78px;
-  height: 78px;
+  border: 6px solid red;
+  width: 100px;
+  height: 100px;
   text-align: center;
-  line-height: 78px;
+  line-height: 100px;
   color: transparent;
 }
 
 .located:hover {
   color: white;
   background-color: rgba(0, 0, 0, 0.712);
-  border: 4px solid rgb(255, 255, 255);
+  border: 6px solid rgb(255, 0, 0);
 }
-
 
 #loader {
   color: #ff0000;
@@ -199,6 +200,61 @@ body {
     box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
       0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
   }
+}
+
+#finish-modal {
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 20000;
+  width: 100vw;
+  height: 100vh;
+  left: 0px;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.726);
+  display: flex;
+}
+
+#modal-content {
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  flex-direction: column;
+}
+
+#modal-content > * {
+  margin: 10px;
+}
+
+#modal-content > h3 {
+  font-weight: 400;
+  font-size: 1.6em;
+}
+
+#name {
+  border: none;
+  outline: none;
+  font-size: 1em;
+  text-align: center;
+  border-bottom: 2px dotted black;
+}
+
+#submit-name {
+  width: 70%;
+  height: 2em;
+  font-size: 1em;
+  border: none;
+  outline: none;
+  background-color: rgb(203, 77, 77);
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#submit-name:hover {
+  background-color: rgb(143, 28, 28);
 }
 
 @media only screen and (max-width: 600px) {
