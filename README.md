@@ -1,1 +1,0 @@
-A game of Where's Wally.
