@@ -86,7 +86,7 @@ checkButton.addEventListener("click", () => {
   // Display loading spinner
   loading.style.left = clickLocation.x - 4 + "px";
   loading.style.top = clickLocation.y - 105 + "px";
-  
+
   // Check if click in range of square
   docRef.get().then((response) => {
     const characterLocation = response.data();
@@ -121,7 +121,6 @@ checkButton.addEventListener("click", () => {
         document.getElementById("finish-modal").style.display = "flex";
         console.log(finishTime);
       }
-
     } else {
       // Reset selection box and loading spinner
       selection.style.left = "-200px";
@@ -130,4 +129,39 @@ checkButton.addEventListener("click", () => {
       loading.style.top = "-200px";
     }
   });
+});
+
+// Submit button once all are found
+const submitName = document.getElementById("submit-name");
+const nameInput = document.getElementById("name");
+submitName.addEventListener("click", () => {
+  const name = nameInput.value;
+  // Reject if empty
+  if (name.length < 1) {
+    return;
+  }
+  const winner = {
+    name: nameInput.value,
+    time: document.getElementById("finish-time").textContent,
+  };
+
+  console.log(winner);
+
+  // Retrieve leaderboard and create a list
+  let leaderboard = [];
+  const leaderboardRef = db.collection("leaderboard");
+
+  leaderboardRef.get().then((response) => {
+    response.forEach((doc) => {
+      console.log(doc.data());
+      leaderboard.push(doc.data());
+    });
+    
+    // Add winner to leaderboard database and current list
+    leaderboardRef.doc(`${leaderboard.length}`).set(winner)
+    leaderboard.push(winner);
+    console.log(leaderboard);
+  });
+
+  // Display leaderboard in modal
 });
